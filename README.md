@@ -2,19 +2,12 @@
 
 ## Timea – Lekáreň
 - Možnosť vyradiť lieky po expirácii
-- **Analytika:**
-    - Vypísať všetky lieky
-    - Vypísať lieky po expirácii
+- Analytika: Vypísat všetky lieky
+- vypísat lieky po expirácii
 
 ## Eli – Liek
-Každý liek má tieto vlastnosti:
-- **Názov**
-- **Účinná látka**
-- **Dátum expirácie**
-- **Cena**
+ - Každý liek má názov, účinnú látku, dátum expirácie a cenu
 
 ## Dano – Sklad liekov
-- **Ovládanie:**
-    - Naskladniť liek
-    - Predať liek pacientovi
-    - Možnosť zoradiť výpis podľa kategórií (**účinná látka**)
+- Ovládanie: Naskladniť liek, predať liek pacientovi
+ - Možnosť zoradiť výpis podľa kategórii. (účinná latka)
