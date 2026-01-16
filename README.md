@@ -2,8 +2,7 @@
 
 ## Timea – Lekáreň
 - Možnosť vyradiť lieky po expirácii
-- Analytika: Vypísat všetky lieky
-- vypísat lieky po expirácii
+- Analytika: Vypísat všetky lieky po expirácii
 
 ## Eli – Liek
  - Každý liek má názov, účinnú látku, dátum expirácie a cenu
