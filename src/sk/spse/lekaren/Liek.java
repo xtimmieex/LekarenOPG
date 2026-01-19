@@ -1,3 +1,4 @@
+package sk.spse.lekaren;
 import java.time.LocalDate;
 
 public class Liek implements Comparable<Liek> {
