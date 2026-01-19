@@ -1,0 +1,72 @@
+[
+  {
+    "nazov": "Paralen 500mg",
+    "ucinnaLatka": "Paracetamol",
+    "datumExpiracie": "2026-12-31",
+    "cena": 3.50,
+    "mnozstvo": 25
+  },
+  {
+    "nazov": "Ibalgin 400mg",
+    "ucinnaLatka": "Ibuprofen",
+    "datumExpiracie": "2025-06-15",
+    "cena": 4.20,
+    "mnozstvo": 18
+  },
+  {
+    "nazov": "Aspirin C",
+    "ucinnaLatka": "Kyselina acetylsalicylová",
+    "datumExpiracie": "2027-03-20",
+    "cena": 5.80,
+    "mnozstvo": 30
+  },
+  {
+    "nazov": "Modafen",
+    "ucinnaLatka": "Ibuprofen",
+    "datumExpiracie": "2024-11-30",
+    "cena": 3.90,
+    "mnozstvo": 5
+  },
+  {
+    "nazov": "Stopangin",
+    "ucinnaLatka": "Hexetidín",
+    "datumExpiracie": "2026-08-10",
+    "cena": 6.50,
+    "mnozstvo": 12
+  },
+  {
+    "nazov": "Panadol Extra",
+    "ucinnaLatka": "Paracetamol",
+    "datumExpiracie": "2025-02-28",
+    "cena": 4.80,
+    "mnozstvo": 8
+  },
+  {
+    "nazov": "Voltaren Emulgel",
+    "ucinnaLatka": "Diklofenak",
+    "datumExpiracie": "2027-01-15",
+    "cena": 8.90,
+    "mnozstvo": 15
+  },
+  {
+    "nazov": "Strepsils",
+    "ucinnaLatka": "Amylmetakrezol",
+    "datumExpiracie": "2026-11-05",
+    "cena": 3.20,
+    "mnozstvo": 22
+  },
+  {
+    "nazov": "Tantum Verde",
+    "ucinnaLatka": "Benzydamín",
+    "datumExpiracie": "2025-09-12",
+    "cena": 5.40,
+    "mnozstvo": 10
+  },
+  {
+    "nazov": "Nurofen Forte",
+    "ucinnaLatka": "Ibuprofen",
+    "datumExpiracie": "2024-12-20",
+    "cena": 6.10,
+    "mnozstvo": 3
+  }
+]

@@ -1,19 +1,35 @@
 package sk.spse.lekaren;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.time.LocalDate;
 
+@JsonPropertyOrder({"nazov", "ucinnaLatka", "datumExpiracie", "cena", "mnozstvo"})
 public class Liek implements Comparable<Liek> {
     // Atribúty
-    private String nazov;
-    private String ucinnaLatka;
-    private LocalDate datumExpiracie;
-    private double cena;
+    private final String nazov;
+    private final String ucinnaLatka;
+    private final LocalDate datumExpiracie;
+    private final double cena;
+    private final int mnozstvo;
 
-    // Konštruktor
-    public Liek(String nazov, String ucinnaLatka, LocalDate datumExpiracie, double cena) {
+    @JsonCreator  // Jackson tento konštruktor použije pri vytváraní objektu z JSON
+    public Liek(
+            // mapovanie JSON atribútov na atribúty triedy
+            @JsonProperty("nazov") String nazov,
+            @JsonProperty("ucinnaLatka") String ucinnaLatka,
+            // Jackson automaticky skonvertuje na LocalDate
+            @JsonProperty("datumExpiracie") LocalDate datumExpiracie,
+            @JsonProperty("cena") double cena,
+            @JsonProperty("mnozstvo") int mnozstvo
+    ) {
         this.nazov = nazov;
         this.ucinnaLatka = ucinnaLatka;
         this.datumExpiracie = datumExpiracie;
         this.cena = cena;
+        this.mnozstvo = mnozstvo;
     }
 
     // Gettery
@@ -33,21 +49,8 @@ public class Liek implements Comparable<Liek> {
         return cena;
     }
 
-    // Settery
-    public void setNazov(String nazov) {
-        this.nazov = nazov;
-    }
-
-    public void setUcinnaLatka(String ucinnaLatka) {
-        this.ucinnaLatka = ucinnaLatka;
-    }
-
-    public void setDatumExpiracie(LocalDate datumExpiracie) {
-        this.datumExpiracie = datumExpiracie;
-    }
-
-    public void setCena(double cena) {
-        this.cena = cena;
+    public int getMnozstvo() {
+        return mnozstvo;
     }
 
     // Metóda na kontrolu expirácie
@@ -64,7 +67,8 @@ public class Liek implements Comparable<Liek> {
     // ToString pre výpis informácií
     @Override
     public String toString() {
-        return String.format("Názov: %s | Účinná látka: %s | Expirácia: %s | Cena: %.2f€",
-                nazov, ucinnaLatka, datumExpiracie, cena);
+        return String.format("Názov: %s | Účinná látka: %s | Expirácia: %s | Cena: %.2f€ | Množstvo: %d ks",
+                nazov, ucinnaLatka, datumExpiracie, cena, mnozstvo);
     }
 }
+
