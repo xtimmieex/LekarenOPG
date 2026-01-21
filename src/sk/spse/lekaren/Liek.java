@@ -58,12 +58,6 @@ public class Liek implements Comparable<Liek> {
         return LocalDate.now().isAfter(datumExpiracie);
     }
 
-    // Implementácia compareTo pre triedenie podľa účinnej látky
-    @Override
-    public int compareTo(Liek inyLiek) {
-        return this.ucinnaLatka.compareTo(inyLiek.ucinnaLatka);
-    }
-
     // ToString pre výpis informácií
     @Override
     public String toString() {
