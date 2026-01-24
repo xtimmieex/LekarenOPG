@@ -1,5 +1,6 @@
 package sk.spse.lekaren;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -103,6 +104,36 @@ public class Lekaren {
             }
         }
         return vysledky;
+    }
+
+    /**
+     * Predá liek pacientovi (odstráni ho zo skladu)
+     * @param liek Liek, ktorý sa má predať
+     * @return true ak bol liek úspešne predaný, false ak liek nie je v sklade
+     */
+    public boolean predatLiek(Liek liek) {
+        if (sklad.getLieky().contains(liek)) {
+            if (liek.jeExpirrovany()) {
+                System.out.println("POZOR: Tento liek je expirovaný a nemôže byť predaný!");
+                return false;
+            }
+            sklad.odstranLiek(liek);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Naskladní nový liek do skladu
+     * @param nazov Názov lieku
+     * @param ucinnaLatka Účinná látka
+     * @param datumExpiracie Dátum expirácie
+     * @param cena Cena lieku
+     * @param mnozstvo Množstvo kusov
+     */
+    public void naskladnitLiek(String nazov, String ucinnaLatka, LocalDate datumExpiracie, double cena, int mnozstvo) {
+        Liek novyLiek = new Liek(nazov, ucinnaLatka, datumExpiracie, cena, mnozstvo);
+        sklad.naskladniLiek(novyLiek);
     }
 
     /**
