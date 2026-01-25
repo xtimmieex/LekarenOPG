@@ -15,7 +15,7 @@
   },
   {
     "nazov": "Aspirin C",
-    "ucinnaLatka": "Kyselina acetylsalicylová",
+    "ucinnaLatka": "Kyselina acetylsalicylova",
     "datumExpiracie": "2027-03-20",
     "cena": 5.80,
     "mnozstvo": 30
@@ -29,7 +29,7 @@
   },
   {
     "nazov": "Stopangin",
-    "ucinnaLatka": "Hexetidín",
+    "ucinnaLatka": "Hexetidin",
     "datumExpiracie": "2026-08-10",
     "cena": 6.50,
     "mnozstvo": 12
@@ -57,7 +57,7 @@
   },
   {
     "nazov": "Tantum Verde",
-    "ucinnaLatka": "Benzydamín",
+    "ucinnaLatka": "Benzydamin",
     "datumExpiracie": "2025-09-12",
     "cena": 5.40,
     "mnozstvo": 10
