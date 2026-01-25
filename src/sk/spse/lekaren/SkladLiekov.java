@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SkladLiekov {
-
     private List<Liek> lieky;
 
     public SkladLiekov() {
@@ -14,10 +13,6 @@ public class SkladLiekov {
 
     public List<Liek> getLieky() {
         return lieky;
-    }
-
-    public void setLieky(List<Liek> lieky) {
-        this.lieky = lieky;
     }
 
     public void naskladniLiek(Liek liek) {
@@ -29,9 +24,7 @@ public class SkladLiekov {
     }
 
     public void vyradLiekyPoExpiracii() {
-        lieky.removeIf(liek ->
-                liek.getDatumExpiracie().isBefore(LocalDate.now())
-        );
+        lieky.removeIf(liek -> !liek.getDatumExpiracie().isAfter(LocalDate.now()));
     }
 
     public int getPocetLiekov() {

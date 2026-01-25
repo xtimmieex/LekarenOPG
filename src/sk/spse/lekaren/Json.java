@@ -4,16 +4,30 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class Json {
 
-    public static void main(String[] args) throws Exception {
+    /**
+     * Načíta lieky zo súboru assets/lieky.json
+     */
+    public static List<Liek> nacitajLieky() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
 
+        File file = new File("assets/lieky.json");
+        return mapper.readValue(file, new TypeReference<List<Liek>>() {});
+    }
+
+    /**
+     * Testovacia hlavná metóda
+     */
+    public static void main(String[] args) throws Exception {
         // Hlavný objekt pre Jackson
         ObjectMapper mapper = new ObjectMapper();
+
         // Pridanie podpory pre java.time (LocalDate)
         mapper.registerModule(new JavaTimeModule());
 
@@ -25,16 +39,16 @@ public class Json {
                 new TypeReference<List<Liek>>() {}
         );
 
-
         for (Liek liek : lieky) {
             System.out.println(liek);
         }
 
-
         // pekné odsadenie (pretty print)
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
         // Chceme zapísať dátum v ISO formáte
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
         // Zapísanie dát do súboru
         File output = new File("out/lieky.json");
         mapper.writeValue(output, lieky);

@@ -7,13 +7,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.time.LocalDate;
 
 @JsonPropertyOrder({"nazov", "ucinnaLatka", "datumExpiracie", "cena", "mnozstvo"})
-public class Liek implements Comparable<Liek> {
-    // Atribúty
+public class Liek {
     private final String nazov;
     private final String ucinnaLatka;
     private final LocalDate datumExpiracie;
     private final double cena;
-    private final int mnozstvo;
+    private int mnozstvo;
 
     @JsonCreator
     public Liek(
@@ -30,29 +29,44 @@ public class Liek implements Comparable<Liek> {
         this.mnozstvo = mnozstvo;
     }
 
-    // Gettery
-    public String getNazov() { return nazov; }
-    public String getUcinnaLatka() { return ucinnaLatka; }
-    public LocalDate getDatumExpiracie() { return datumExpiracie; }
-    public double getCena() { return cena; }
-    public int getMnozstvo() { return mnozstvo; }
-
-    // Opravená metóda compareTo pre porovnávanie podľa účinnej látky
-    @Override
-    public int compareTo(Liek other) {
-        return this.ucinnaLatka.compareTo(other.ucinnaLatka);
+    public String getNazov() {
+        return nazov;
     }
 
-    // Metóda na kontrolu expirácie
+    public String getUcinnaLatka() {
+        return ucinnaLatka;
+    }
+
+    public LocalDate getDatumExpiracie() {
+        return datumExpiracie;
+    }
+
+    public double getCena() {
+        return cena;
+    }
+
+    public int getMnozstvo() {
+        return mnozstvo;
+    }
+
+    /**
+     * Zníži množstvo lieku o zadaný počet kusov
+     */
+    public void zmensitMnozstvo(int pocet) {
+        this.mnozstvo -= pocet;
+    }
+
+    /**
+     * Kontroluje, či je liek expirovaný
+     */
     public boolean jeExpirrovany() {
         return LocalDate.now().isAfter(datumExpiracie);
     }
 
-    // Opravený toString pre konzistentný výpis
     @Override
     public String toString() {
-        String stav = jeExpirrovany() ? " [EXpirovaný]" : "";
-        return String.format("Názov: %s | Účinná látka: %s | Expirácia: %s | Cena: %.2f€ | Množstvo: %d%s",
+        String stav = jeExpirrovany() ? " [Expirovaný]" : "";
+        return String.format("Názov: %s | Účinná látka: %s | Expirácia: %s | Cena: %.2f€ | Množstvo: %d ks%s",
                 nazov, ucinnaLatka, datumExpiracie, cena, mnozstvo, stav);
     }
 }
