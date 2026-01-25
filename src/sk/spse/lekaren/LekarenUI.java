@@ -3,7 +3,6 @@ package sk.spse.lekaren;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,20 +33,27 @@ public class LekarenUI {
      * Bezpečne načíta celé číslo z konzoly
      * @param min Minimálna povolená hodnota
      * @param max Maximálna povolená hodnota
-     * @return Načítané číslo alebo -1 pri chybe
+     * @return Načítané číslo alebo -1 pri chybe alebo prázdnom vstupe
      */
     private int nacitajCislo(int min, int max) {
+        String vstup = scanner.nextLine().trim();
+
+        // Ak je vstup prázdny (len ENTER)
+        if (vstup.isEmpty()) {
+            System.out.println("✗ Nezadali ste žiadne číslo!");
+            return -1;
+        }
+
         try {
-            int cislo = scanner.nextInt();
-            scanner.nextLine(); // Vyčistenie bufferu
+            int cislo = Integer.parseInt(vstup);
 
             if (cislo < min || cislo > max) {
                 System.out.println("✗ Číslo musí byť v rozsahu " + min + " až " + max + "!");
                 return -1;
             }
+
             return cislo;
-        } catch (InputMismatchException e) {
-            scanner.nextLine(); // Vyčistenie bufferu
+        } catch (NumberFormatException e) {
             System.out.println("✗ Chyba: Zadajte platné číslo!");
             return -1;
         }
@@ -55,20 +61,27 @@ public class LekarenUI {
 
     /**
      * Bezpečne načíta desatinné číslo z konzoly
-     * @return Načítané číslo alebo -1 pri chybe
+     * @return Načítané číslo alebo -1 pri chybe alebo prázdnom vstupe
      */
     private double nacitajDouble() {
+        String vstup = scanner.nextLine().trim();
+
+        // Ak je vstup prázdny (len ENTER)
+        if (vstup.isEmpty()) {
+            System.out.println("✗ Nezadali ste žiadne číslo!");
+            return -1;
+        }
+
         try {
-            double cislo = scanner.nextDouble();
-            scanner.nextLine(); // Vyčistenie bufferu
+            double cislo = Double.parseDouble(vstup);
 
             if (cislo < 0) {
                 System.out.println("✗ Cena nemôže byť záporná!");
                 return -1;
             }
+
             return cislo;
-        } catch (InputMismatchException e) {
-            scanner.nextLine(); // Vyčistenie bufferu
+        } catch (NumberFormatException e) {
             System.out.println("✗ Chyba: Zadajte platné číslo (použite bodku ako desatinnú čiarku)!");
             return -1;
         }
@@ -92,7 +105,7 @@ public class LekarenUI {
 
     public void uvitanie() {
         System.out.println("=========================================");
-        System.out.println("         VITAJTE V LEKÁRNI              ");
+        System.out.println("         VITAJTE V LEKÁRNI         ");
         System.out.println("=========================================");
         System.out.println("Dobrý deň! Vitajte v našej lekárni.");
         System.out.println("Sme tu pre Vás 24/7 s kompletnou ponukou liekov.");
@@ -201,8 +214,13 @@ public class LekarenUI {
         // Načítanie dátumu expirácie
         System.out.print("Dátum expirácie (RRRR-MM-DD): ");
         String datumStr = scanner.nextLine().trim();
-        LocalDate datumExpiracie;
+        if (datumStr.isEmpty()) {
+            System.out.println("✗ Dátum nemôže byť prázdny!");
+            System.out.println("Pridanie zrušené.\n");
+            return;
+        }
 
+        LocalDate datumExpiracie;
         try {
             datumExpiracie = LocalDate.parse(datumStr, DateTimeFormatter.ISO_LOCAL_DATE);
         } catch (DateTimeParseException e) {
@@ -235,6 +253,7 @@ public class LekarenUI {
 
     public void predatLiek() {
         System.out.println("\n=== PREDAJ LIEKU ===");
+
         if (lekaren.jeSkladPrazdny()) {
             System.out.println("Sklad je prázdny. Nie je možné predať liek.\n");
             return;
@@ -245,7 +264,6 @@ public class LekarenUI {
 
         System.out.print("Vyberte číslo lieku na predaj (0 pre zrušenie): ");
         int volba = nacitajCislo(0, lieky.size());
-
         if (volba == -1) {
             System.out.println("Neplatný vstup. Predaj zrušený.\n");
             return;
@@ -262,7 +280,6 @@ public class LekarenUI {
         // Opýtame sa na počet kusov
         System.out.print("Koľko kusov chcete predať? (Dostupné: " + vybranyLiek.getMnozstvo() + " ks): ");
         int pocetKusov = nacitajCislo(1, vybranyLiek.getMnozstvo());
-
         if (pocetKusov == -1) {
             System.out.println("Neplatný vstup. Predaj zrušený.\n");
             return;
@@ -270,7 +287,6 @@ public class LekarenUI {
 
         // Vypočítame celkovú cenu
         double celkovaCena = vybranyLiek.getCena() * pocetKusov;
-
         System.out.printf("\nCelková suma: %.2f€ (%.2f€ × %d ks)\n", celkovaCena, vybranyLiek.getCena(), pocetKusov);
         System.out.print("Potvrďte predaj (a/n): ");
         String potvrdenie = scanner.nextLine().toLowerCase().trim();
@@ -293,6 +309,7 @@ public class LekarenUI {
 
     public void vyraditLiek() {
         System.out.println("\n=== VYRADENIE LIEKU ===");
+
         if (lekaren.jeSkladPrazdny()) {
             System.out.println("Sklad je prázdny. Nie je možné vyradiť liek.\n");
             return;
@@ -303,7 +320,6 @@ public class LekarenUI {
 
         System.out.print("Vyberte číslo lieku na vyradenie (0 pre zrušenie): ");
         int volba = nacitajCislo(0, lieky.size());
-
         if (volba == -1) {
             System.out.println("Neplatný vstup. Vyradenie zrušené.\n");
             return;
@@ -334,8 +350,8 @@ public class LekarenUI {
 
     public void vyraditVsetkyExpirovane() {
         System.out.println("\n=== VYRADENIE VŠETKÝCH EXPIROVANÝCH LIEKOV ===");
-        int pocetExpirovanychPred = lekaren.getPocetExpirovanychLiekov();
 
+        int pocetExpirovanychPred = lekaren.getPocetExpirovanychLiekov();
         if (pocetExpirovanychPred == 0) {
             System.out.println("✓ V sklade nie sú žiadne expirované lieky.\n");
             return;
@@ -395,7 +411,7 @@ public class LekarenUI {
                     vyraditVsetkyExpirovane();
                     break;
                 case 9:
-                    System.out.println("\nĎakujeme za návštevu! Dobre sa máte.");
+                    System.out.println("\nĎakujeme za návštevu! Dovidenia.");
                     scanner.close();
                     return;
             }
