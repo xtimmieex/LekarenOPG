@@ -1,46 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<HBox prefHeight="500.0" prefWidth="800.0" spacing="15.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sk.spse.javafx.Controller">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
 
+   <VBox prefWidth="250.0" spacing="10.0" style="-fx-background-color: #f4f4f4; -fx-padding: 10;">
+      <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Hlavné menu" />
+      <Separator />
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <VBox alignment="CENTER" prefHeight="70.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="VITAJTE V LEKÁRNI " />
-            <Separator prefWidth="200.0" />
-            <Label text="Dobrý deň! Vitajte v našej lekárni." />
-            <Label text="Sme tu pre Vás 24/7 s kompletnou ponukou liekov." />
-            <Separator prefWidth="200.0" />
-         </children>
-      </VBox>
-   </top>
-   <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="=== HLAVNÉ MENU LEKÁRNE ===" />
-            <TableView prefHeight="200.0" prefWidth="200.0">
-              <columns>
-                <TableColumn prefWidth="75.0" />
-              </columns>
-            </TableView>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label text="Label" />
-                  <TextField />
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </center>
-   <bottom>
-      <Label text="Label" BorderPane.alignment="CENTER" />
-   </bottom>
-</BorderPane>
+      <Button maxWidth="Infinity" onAction="#ukazPodlaLatky" text="1. Lieky podľa účinnej látky" />
+      <Button maxWidth="Infinity" onAction="#ukazVsetky" text="2. Všetky lieky" />
+      <Button maxWidth="Infinity" onAction="#ukazExpirovane" text="3. Expirované lieky" />
+      <Button maxWidth="Infinity" onAction="#vyhladatLiek" text="4. Vyhľadať liek (podľa názvu)" />
+      <Separator />
+      <Button maxWidth="Infinity" onAction="#pridatLiek" style="-fx-base: lightgreen;" text="5. Pridať nový liek" />
+      <Button maxWidth="Infinity" onAction="#predatLiek" text="6. Predaj vybraného lieku" />
+      <Button maxWidth="Infinity" onAction="#vyraditLiek" text="7. Vyradiť vybraný liek" />
+      <Button maxWidth="Infinity" onAction="#vyraditExpirovane" style="-fx-base: #ffcccc;" text="8. Vyradiť všetky expirované" />
+   </VBox>
+
+   <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+      <Label style="-fx-font-weight: bold;" text="Zoznam liekov:" />
+      <ListView fx:id="zoznamLiekov" VBox.vgrow="ALWAYS" />
+      <Label fx:id="infoLabel" style="-fx-text-fill: blue;" text="Vitajte v lekárni." />
+   </VBox>
+
+</HBox>
