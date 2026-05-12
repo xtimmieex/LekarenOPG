@@ -68,5 +68,110 @@
     "datumExpiracie": "2024-12-20",
     "cena": 6.10,
     "mnozstvo": 3
+  },
+  {
+    "nazov": "Coldrex MaxGrip",
+    "ucinnaLatka": "Paracetamol",
+    "datumExpiracie": "2026-05-30",
+    "cena": 5.10,
+    "mnozstvo": 14
+  },
+  {
+    "nazov": "Claritine 10mg",
+    "ucinnaLatka": "Loratadin",
+    "datumExpiracie": "2027-06-01",
+    "cena": 7.20,
+    "mnozstvo": 20
+  },
+  {
+    "nazov": "Xyzal 5mg",
+    "ucinnaLatka": "Levocetirizin",
+    "datumExpiracie": "2026-09-15",
+    "cena": 8.40,
+    "mnozstvo": 10
+  },
+  {
+    "nazov": "Degan 10mg",
+    "ucinnaLatka": "Metoklopramid",
+    "datumExpiracie": "2025-11-20",
+    "cena": 3.70,
+    "mnozstvo": 16
+  },
+  {
+    "nazov": "Rennie",
+    "ucinnaLatka": "Kalcium karbonát",
+    "datumExpiracie": "2027-08-25",
+    "cena": 4.50,
+    "mnozstvo": 40
+  },
+  {
+    "nazov": "Smecta",
+    "ucinnaLatka": "Diosmektit",
+    "datumExpiracie": "2026-03-10",
+    "cena": 6.80,
+    "mnozstvo": 9
+  },
+  {
+    "nazov": "Espumisan 40mg",
+    "ucinnaLatka": "Simetikon",
+    "datumExpiracie": "2027-02-14",
+    "cena": 5.30,
+    "mnozstvo": 25
+  },
+  {
+    "nazov": "Wobenzym",
+    "ucinnaLatka": "Enzýmový komplex",
+    "datumExpiracie": "2025-07-31",
+    "cena": 12.90,
+    "mnozstvo": 7
+  },
+  {
+    "nazov": "Magnézium B6",
+    "ucinnaLatka": "Magnézium",
+    "datumExpiracie": "2026-10-20",
+    "cena": 6.00,
+    "mnozstvo": 30
+  },
+  {
+    "nazov": "Vitamin C 1000mg",
+    "ucinnaLatka": "Kyselina askorbová",
+    "datumExpiracie": "2027-04-05",
+    "cena": 4.90,
+    "mnozstvo": 60
+  },
+  {
+    "nazov": "Zinnat 250mg",
+    "ucinnaLatka": "Cefuroxim",
+    "datumExpiracie": "2026-07-18",
+    "cena": 9.50,
+    "mnozstvo": 6
+  },
+  {
+    "nazov": "Augmentin 625mg",
+    "ucinnaLatka": "Amoxicilín/Klavulanát",
+    "datumExpiracie": "2025-04-10",
+    "cena": 11.20,
+    "mnozstvo": 4
+  },
+  {
+    "nazov": "Coaxil 12.5mg",
+    "ucinnaLatka": "Tianeptín",
+    "datumExpiracie": "2026-06-30",
+    "cena": 7.80,
+    "mnozstvo": 11
+  },
+  {
+    "nazov": "Euthyrox 50mcg",
+    "ucinnaLatka": "Levotyroxín",
+    "datumExpiracie": "2027-09-01",
+    "cena": 5.60,
+    "mnozstvo": 28
+  },
+  {
+    "nazov": "Prestarium 5mg",
+    "ucinnaLatka": "Perindopril",
+    "datumExpiracie": "2026-02-28",
+    "cena": 8.10,
+    "mnozstvo": 20
   }
 ]
