@@ -2,6 +2,7 @@ package sk.spse.javafx;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import sk.spse.lekaren.Json;
 import sk.spse.lekaren.Lekaren;
@@ -13,13 +14,27 @@ import java.util.Optional;
 
 public class Controller {
 
-    @FXML private ListView<Liek> zoznamLiekov;
+    @FXML private TableView<Liek> tabulkaLiekov;
+    @FXML private TableColumn<Liek, String> colNazov;
+    @FXML private TableColumn<Liek, String> colLatka;
+    @FXML private TableColumn<Liek, Integer> colKusy;
+    @FXML private TableColumn<Liek, Double> colCena;
+    @FXML private TableColumn<Liek, LocalDate> colExpiracia;
+
     @FXML private Label infoLabel;
 
     private Lekaren lekaren = new Lekaren();
 
     @FXML
     public void initialize() {
+        colNazov.setCellValueFactory(new PropertyValueFactory<>("nazov"));
+        colLatka.setCellValueFactory(new PropertyValueFactory<>("ucinnaLatka"));
+        colKusy.setCellValueFactory(new PropertyValueFactory<>("mnozstvo"));
+        colCena.setCellValueFactory(new PropertyValueFactory<>("cena"));
+
+        // OPRAVENÝ RIADOK: Nastavené na "datumExpiracie", aby to sedelo s getDatumExpiracie() v triede Liek
+        colExpiracia.setCellValueFactory(new PropertyValueFactory<>("datumExpiracie"));
+
         try {
             List<Liek> lieky = Json.nacitajLieky();
 
@@ -43,7 +58,7 @@ public class Controller {
     @FXML
     public void ukazPodlaLatky() {
         List<Liek> lieky = lekaren.ziskatLiekyPodlaUcinnejLatky();
-        zoznamLiekov.getItems().setAll(lieky);
+        tabulkaLiekov.getItems().setAll(lieky);
 
         if (lieky.isEmpty()) {
             infoLabel.setText("Sklad je prázdny.");
@@ -55,7 +70,7 @@ public class Controller {
     @FXML
     public void ukazVsetky() {
         List<Liek> lieky = lekaren.ziskatVsetkyLieky();
-        zoznamLiekov.getItems().setAll(lieky);
+        tabulkaLiekov.getItems().setAll(lieky);
 
         if (lieky.isEmpty()) {
             infoLabel.setText("Sklad je prázdny.");
@@ -67,7 +82,7 @@ public class Controller {
     @FXML
     public void ukazExpirovane() {
         List<Liek> expirovane = lekaren.ziskatExpirovanyLieky();
-        zoznamLiekov.getItems().setAll(expirovane);
+        tabulkaLiekov.getItems().setAll(expirovane);
 
         if (expirovane.isEmpty()) {
             infoLabel.setText("V sklade nie sú žiadne expirované lieky.");
@@ -97,7 +112,7 @@ public class Controller {
         }
 
         List<Liek> najdene = lekaren.vyhladatPodlaNazvu(nazov);
-        zoznamLiekov.getItems().setAll(najdene);
+        tabulkaLiekov.getItems().setAll(najdene);
 
         if (najdene.isEmpty()) {
             infoLabel.setText("Nenašiel sa žiadny liek s názvom: " + nazov);
@@ -195,7 +210,7 @@ public class Controller {
             return;
         }
 
-        Liek vybrany = zoznamLiekov.getSelectionModel().getSelectedItem();
+        Liek vybrany = tabulkaLiekov.getSelectionModel().getSelectedItem();
 
         if (vybrany == null) {
             infoLabel.setText("Najprv musíte kliknúť na liek v zozname.");
@@ -263,7 +278,7 @@ public class Controller {
             return;
         }
 
-        Liek vybrany = zoznamLiekov.getSelectionModel().getSelectedItem();
+        Liek vybrany = tabulkaLiekov.getSelectionModel().getSelectedItem();
 
         if (vybrany == null) {
             infoLabel.setText("Najprv musíte kliknúť na liek v zozname.");
@@ -315,23 +330,12 @@ public class Controller {
     }
 
     private Double nacitajCenu(String vstup) {
-        if (vstup == null) {
-            return null;
-        }
-
+        if (vstup == null) return null;
         vstup = vstup.trim().replace(',', '.');
-
-        if (vstup.isEmpty()) {
-            return null;
-        }
-
+        if (vstup.isEmpty()) return null;
         try {
             double cena = Double.parseDouble(vstup);
-
-            if (cena <= 0 || Double.isNaN(cena) || Double.isInfinite(cena)) {
-                return null;
-            }
-
+            if (cena <= 0 || Double.isNaN(cena) || Double.isInfinite(cena)) return null;
             return cena;
         } catch (NumberFormatException e) {
             return null;
@@ -339,23 +343,12 @@ public class Controller {
     }
 
     private Integer nacitajKusy(String vstup) {
-        if (vstup == null) {
-            return null;
-        }
-
+        if (vstup == null) return null;
         vstup = vstup.trim();
-
-        if (vstup.isEmpty()) {
-            return null;
-        }
-
+        if (vstup.isEmpty()) return null;
         try {
             int kusy = Integer.parseInt(vstup);
-
-            if (kusy <= 0) {
-                return null;
-            }
-
+            if (kusy <= 0) return null;
             return kusy;
         } catch (NumberFormatException e) {
             return null;

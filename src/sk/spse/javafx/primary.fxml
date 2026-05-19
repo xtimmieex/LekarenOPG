@@ -25,7 +25,20 @@
 
    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
       <Label style="-fx-font-weight: bold;" text="Zoznam liekov:" />
-      <ListView fx:id="zoznamLiekov" VBox.vgrow="ALWAYS" />
+
+      <TableView fx:id="tabulkaLiekov" VBox.vgrow="ALWAYS">
+         <columns>
+            <TableColumn fx:id="colNazov" prefWidth="130.0" text="Názov lieku" />
+            <TableColumn fx:id="colLatka" prefWidth="130.0" text="Účinná látka" />
+            <TableColumn fx:id="colKusy" prefWidth="70.0" text="Kusy" />
+            <TableColumn fx:id="colCena" prefWidth="70.0" text="Cena (€)" />
+            <TableColumn fx:id="colExpiracia" prefWidth="100.0" text="Expirácia" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+
       <Label fx:id="infoLabel" style="-fx-text-fill: blue;" text="Vitajte v lekárni." />
    </VBox>
 
